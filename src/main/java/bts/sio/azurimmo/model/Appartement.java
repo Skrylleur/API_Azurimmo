@@ -24,7 +24,7 @@ public class Appartement {
     @Column(name = "description")
     private String description;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "batiment_id")
     private Batiment batiment;
 

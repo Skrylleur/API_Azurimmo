@@ -28,11 +28,11 @@ public class Paiement {
 	
 	//Ajout des getters et setters
 	//Id
-	public Long setId() {
+	public Long getId() {
 		return id;
 	}
 	
-	public void getId(Long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	
