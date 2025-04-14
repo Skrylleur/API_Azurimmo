@@ -9,9 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.Data;
 
-@Data
 @Entity
 @Table(name = "intervention")
 public class Intervention {
@@ -29,6 +27,11 @@ public class Intervention {
 	@Column(name="dateInter")
 	private Date dateInter;
 
+	 //Relation ManyToOne avec la classe Appartement
+    @ManyToOne
+    @JoinColumn(name = "appartement_id")
+    private Appartement appartement;
+    
 	//Ajout des getters et setters
 	//Id
 	public Long getId() {
@@ -66,9 +69,12 @@ public class Intervention {
     	this.dateInter = dateInter;
     }
     
-    //Relation ManyToOne avec la classe Appartement
-    @ManyToOne
-    @JoinColumn(name = "appartement_id")
-    private Appartement appartement;
+    public Appartement getAppartement() {
+        return appartement;
+    }
+
+    public void setAppartement(Appartement appartement) {
+        this.appartement = appartement;
+    }
 
 }

@@ -18,7 +18,7 @@ public class Paiement {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	
 	@Column(name = "montant")
 	private Double montant;
@@ -26,6 +26,11 @@ public class Paiement {
 	@Column(name = "datePaiement")
 	private Date datePaiement;
 	
+	//Relation ManyToOne avec la classe Contrat
+	@ManyToOne
+	@JoinColumn(name = "contrat_id", nullable = false)
+	private Contrat contrat;
+		
 	//Ajout des getters et setters
 	//Id
 	public Long getId() {
@@ -54,8 +59,12 @@ public class Paiement {
 		this.datePaiement = datePaiement;
 	}
 	
-	//Relation ManyToOne avec la classe Contrat
-	@ManyToOne
-	@JoinColumn(name = "contrat_id")
-	private Contrat contrat;
+	public Contrat getContrat() {
+	    return contrat;
+	}
+
+	public void setContrat(Contrat contrat) {
+	    this.contrat = contrat;
+	}
+	
 }

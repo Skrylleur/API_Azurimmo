@@ -1,11 +1,16 @@
 package bts.sio.azurimmo.model;
 
 import java.sql.Date;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -16,7 +21,7 @@ public class Locataire {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	
 	@Column(name = "nom")
 	private String nom;
@@ -29,6 +34,11 @@ public class Locataire {
 	
 	@Column(name = "lieuN")
 	private String lieuN;
+	
+	@ManyToOne
+	@JoinColumn(name = "contrat_id", nullable = false)
+	@JsonIgnoreProperties("locataires")
+	private Contrat contrat;
 	
 	//Ajout des guetters et setters
 	//Id
@@ -75,4 +85,13 @@ public class Locataire {
 	public void setLieuN(String lieuN) {
 		this.lieuN = lieuN;
 	}
+	
+	public Contrat getContrat() {
+        return contrat;
+    }
+
+    public void setContrat(Contrat contrat) {
+        this.contrat= contrat;
+    }
+
 }

@@ -1,5 +1,7 @@
 package bts.sio.azurimmo.model;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
 
@@ -18,16 +20,22 @@ public class Appartement {
     @Column(name = "surface")
     private float surface;
 
-    @Column(name = "nb_pieces")
+    @Column(name = "nbPieces")
     private int nbPieces;
 
     @Column(name = "description")
     private String description;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     @JoinColumn(name = "batiment_id")
     private Batiment batiment;
+    
+    @OneToMany(mappedBy = "appartement", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Intervention> interventions;
 
+	@OneToMany(mappedBy = "appartement", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Contrat> contrats;
+	
     // Getter et Setter pour id
     public Long getId() {
         return id;
