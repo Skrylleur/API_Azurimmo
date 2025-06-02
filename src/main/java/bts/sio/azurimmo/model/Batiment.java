@@ -35,7 +35,8 @@ public class Batiment {
     }
 
 	@OneToMany(mappedBy = "batiment", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Appartement> appartements;
+	@com.fasterxml.jackson.annotation.JsonManagedReference
+	private List<Appartement> appartements;	
 	
     public void setId(Long id) {
         this.id = id;

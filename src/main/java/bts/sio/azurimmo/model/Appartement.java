@@ -28,6 +28,7 @@ public class Appartement {
 
     @ManyToOne
     @JoinColumn(name = "batiment_id")
+    @com.fasterxml.jackson.annotation.JsonBackReference
     private Batiment batiment;
     
     @OneToMany(mappedBy = "appartement", cascade = CascadeType.ALL, orphanRemoval = true)
